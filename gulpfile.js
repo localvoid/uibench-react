@@ -13,6 +13,9 @@ gulp.task('html', function() {
 
 gulp.task('build', function(callback) {
   var myConfig = Object.create(webpackConfig);
+  myConfig.entry = [
+    './web/js/main.jsx'
+  ];
   myConfig.plugins = myConfig.plugins || [];
   myConfig.plugins = myConfig.plugins.concat(
       new webpack.DefinePlugin({
