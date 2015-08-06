@@ -12,56 +12,76 @@ gulp.task('html', function() {
 });
 
 gulp.task('build', function(callback) {
-  var myConfig = Object.create(webpackConfig);
-  myConfig.entry = [
-    './web/js/main.jsx'
-  ];
-  myConfig.plugins = myConfig.plugins || [];
-  myConfig.plugins = myConfig.plugins.concat(
-      new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: JSON.stringify('production')
-        }
-      }),
+  var cfg = {
+    entry: ['./web/js/main.jsx'],
+    output: {
+      path: path.join(__dirname, 'build'),
+      filename: 'bundle.js'
+    },
+    resolve: {
+      extensions: ['', '.js', '.jsx']
+    },
+    module: {
+      loaders: [{
+        test: /\.jsx?$/,
+        exclude: /(node_modules)/,
+        loaders: ['babel']
+      }]
+    },
+    plugins: [
+      new webpack.NoErrorsPlugin(),
+      new webpack.DefinePlugin({'process.env': {NODE_ENV: JSON.stringify('production')}}),
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.UglifyJsPlugin()
-  );
+    ]
+  };
 
-  // run webpack
-  webpack(myConfig, function(err, stats) {
-    if (err) {
-      throw new gutil.PluginError('webpack:build', err);
-    }
-    gutil.log('[webpack:build]', stats.toString({
-      colors: true
-    }));
+  webpack(cfg, function(err, stats) {
+    if (err) throw new gutil.PluginError('build', err);
+    gutil.log('[build]', stats.toString({colors: true}));
     callback();
   });
 });
 
 
 gulp.task('serve', function(callback) {
-  var myConfig = Object.create(webpackConfig);
-  myConfig.devtool = 'eval';
-  myConfig.debug = true;
-  myConfig.plugins = myConfig.plugins.concat(
-      new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: JSON.stringify('production')
-        }
-      }),
+  var cfg = {
+    entry: [
+      'webpack-dev-server/client?http://0.0.0.0:8080',
+      './web/js/main.jsx'
+    ],
+    devtool: 'eval',
+    debug: true,
+    output: {
+      path: path.join(__dirname, 'build'),
+      filename: 'bundle.js'
+    },
+    resolve: {
+      extensions: ['', '.js', '.jsx']
+    },
+    module: {
+      loaders: [{
+        test: /\.jsx?$/,
+        exclude: /(node_modules)/,
+        loaders: ['babel']
+      }]
+    },
+    plugins: [
+      new webpack.NoErrorsPlugin()
+      new webpack.DefinePlugin({'process.env': {NODE_ENV: JSON.stringify('production')}}),
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.UglifyJsPlugin()
-  );
+    ]
+  };
 
-  new WebpackDevServer(webpack(myConfig), {
+  new WebpackDevServer(webpack(cfg), {
     contentBase: './build',
     stats: {
       colors: true
     }
   }).listen(8080, '0.0.0.0', function (err) {
     if (err) throw new gutil.PluginError('webpack-dev-server', err);
-    gutil.log('[webpack-dev-server]', 'http://localhost:8080/webpack-dev-server/index.html');
+    gutil.log('[serve]', 'http://localhost:8080/webpack-dev-server/index.html');
   });
 });
 
