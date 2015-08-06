@@ -38,7 +38,7 @@ export class Table extends React.Component {
   }
 
   render() {
-    var items = this.props.items;
+    var items = this.props.data.items;
 
     var children = [];
     for (var i = 0; i < items.length; i++) {
