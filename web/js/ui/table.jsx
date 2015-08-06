@@ -38,28 +38,10 @@ export class Table extends React.Component {
   }
 
   render() {
-    var i;
-    var newItems;
-    var data = this.props.data;
-    var items = data.items;
-
-    if (data.filter) {
-      newItems = [];
-      for (i = 0; i < items.length; i++) {
-        if ((i % data.filter) === 0) {
-          newItems.push(items[i]);
-        }
-      }
-      items = newItems;
-    }
-    if (data.sort != null) {
-      newItems = items.slice();
-      newItems.sort(function(a, b) { return a.props[data.sort].localeCompare(b.props[data.sort]); });
-      items = newItems;
-    }
+    var items = this.props.items;
 
     var children = [];
-    for (i = 0; i < items.length; i++) {
+    for (var i = 0; i < items.length; i++) {
       var item = items[i];
       children.push((<TableRow key={item.id} data={item} />));
     }
