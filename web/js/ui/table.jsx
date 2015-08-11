@@ -1,6 +1,11 @@
 import React from 'react';
 
 class TableCell extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     return this.props.text !== nextProps.text;
   }
@@ -11,7 +16,7 @@ class TableCell extends React.Component {
   }
 
   render() {
-    return (<td className="TableCell" onClick={this.onClick.bind(this)}>{this.props.text}</td>);
+    return (<td className="TableCell" onClick={this.onClick}>{this.props.text}</td>);
   }
 }
 
