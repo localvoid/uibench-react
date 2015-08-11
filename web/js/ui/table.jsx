@@ -25,11 +25,6 @@ class TableRow extends React.Component {
     return this.props.data !== nextProps.data;
   }
 
-  handleClick(event) {
-    event.preventDefault();
-    event.stopPropagation();
-  }
-
   render() {
     var data = this.props.data;
     var classes = 'TableRow';
