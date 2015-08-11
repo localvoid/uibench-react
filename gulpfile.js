@@ -3,8 +3,8 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
-var webpackConfig = require('./webpack.config.js');
 var ghPages = require('gulp-gh-pages');
+var path = require('path');
 
 gulp.task('html', function() {
   gulp.src('web/index.html')
@@ -67,7 +67,7 @@ gulp.task('serve', function(callback) {
       }]
     },
     plugins: [
-      new webpack.NoErrorsPlugin()
+      new webpack.NoErrorsPlugin(),
       new webpack.DefinePlugin({'process.env': {NODE_ENV: JSON.stringify('production')}}),
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.UglifyJsPlugin()
