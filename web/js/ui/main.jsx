@@ -14,13 +14,11 @@ export class Main extends React.Component {
 
     var section;
     if (location === 'table') {
-      section = (<Table data={data.table}></Table>)
+      section = (<Table data={data.table}></Table>);
     } else if (location === 'anim') {
       section = (<Anim data={data.anim}></Anim>);
     } else if (location === 'tree') {
       section = (<Tree data={data.tree}></Tree>);
-    } else {
-      section = [];
     }
 
     return (<div className="Main">{section}</div>);
