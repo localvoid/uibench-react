@@ -25,7 +25,7 @@ gulp.task('build', function(callback) {
       loaders: [{
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
-        loaders: ['babel']
+        loaders: ['babel?loose']
       }]
     },
     plugins: [
@@ -63,7 +63,7 @@ gulp.task('serve', function(callback) {
       loaders: [{
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
-        loaders: ['babel']
+        loaders: ['babel?loose']
       }]
     },
     plugins: [
