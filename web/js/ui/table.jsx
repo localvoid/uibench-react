@@ -5,14 +5,24 @@ class TableCell extends React.Component {
     return this.props.text !== nextProps.text;
   }
 
+  onClick(e) {
+    console.log('Clicked' + this.props.text);
+    e.stopPropagation();
+  }
+
   render() {
-    return (<td className="TableCell">{this.props.text}</td>);
+    return (<td className="TableCell" onClick={this.onClick.bind(this)}>{this.props.text}</td>);
   }
 }
 
 class TableRow extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     return this.props.data !== nextProps.data;
+  }
+
+  handleClick(event) {
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   render() {
