@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 class TreeLeaf extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {

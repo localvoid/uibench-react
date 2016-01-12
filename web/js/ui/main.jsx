@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {Table} from './table';
 import {Anim} from './anim';
 import {Tree} from './tree';
