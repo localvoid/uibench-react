@@ -1,5 +1,3 @@
-build
-
 node_modules
 
 # Tern
@@ -9,6 +7,3 @@ node_modules
 .DS_Store
 
 .idea
-
-# gulp-gh-pages
-.publish
