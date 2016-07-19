@@ -5,6 +5,7 @@ module.exports = {
   entry: {
     main: path.join(__dirname, 'js', 'main.jsx'),
     fc: path.join(__dirname, 'js', 'fc.jsx'),
+    pc: path.join(__dirname, 'js', 'pc.jsx'),
   },
   output: {
     path: path.join(__dirname, 'dist'),

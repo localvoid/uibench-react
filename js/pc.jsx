@@ -1,14 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class TableCell extends React.Component {
+class TableCell extends React.PureComponent {
   constructor(props) {
     super(props);
     this.onClick = this.onClick.bind(this);
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.text !== nextProps.text;
   }
 
   onClick(e) {
@@ -21,11 +17,7 @@ class TableCell extends React.Component {
   }
 }
 
-class TableRow extends React.Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.data !== nextProps.data;
-  }
-
+class TableRow extends React.PureComponent {
   render() {
     const { data } = this.props;
 
@@ -46,11 +38,7 @@ class TableRow extends React.Component {
   }
 }
 
-class Table extends React.Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.data !== nextProps.data;
-  }
-
+class Table extends React.PureComponent {
   render() {
     const items = this.props.data.items;
 
@@ -64,11 +52,7 @@ class Table extends React.Component {
   }
 }
 
-class AnimBox extends React.Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.data !== nextProps.data;
-  }
-
+class AnimBox extends React.PureComponent {
   render() {
     const { data } = this.props;
     const time = data.time;
@@ -81,11 +65,7 @@ class AnimBox extends React.Component {
   }
 }
 
-class Anim extends React.Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.data !== nextProps.data;
-  }
-
+class Anim extends React.PureComponent {
   render() {
     const items = this.props.data.items;
 
@@ -99,21 +79,13 @@ class Anim extends React.Component {
   }
 }
 
-class TreeLeaf extends React.Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.data !== nextProps.data;
-  }
-
+class TreeLeaf extends React.PureComponent {
   render() {
     return <li className="TreeLeaf">{this.props.data.id}</li>;
   }
 }
 
-class TreeNode extends React.Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.data !== nextProps.data;
-  }
-
+class TreeNode extends React.PureComponent {
   render() {
     const { data } = this.props;
     const children = [];
@@ -131,21 +103,13 @@ class TreeNode extends React.Component {
   }
 }
 
-class Tree extends React.Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.data !== nextProps.data;
-  }
-
+class Tree extends React.PureComponent {
   render() {
     return <div className="Tree"><TreeNode data={this.props.data.root} /></div>;
   }
 }
 
-class Main extends React.Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.data !== nextProps.data;
-  }
-
+class Main extends React.PureComponent {
   render() {
     const { data } = this.props;
     const location = data.location;
@@ -163,7 +127,7 @@ class Main extends React.Component {
   }
 }
 
-uibench.init('React', React.version);
+uibench.init('React[PC]', React.version);
 
 document.addEventListener('DOMContentLoaded', function(e) {
   const container = document.querySelector('#App');
