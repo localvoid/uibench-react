@@ -55,7 +55,7 @@ const Main = ({data}) => {
   return <div className="Main">{section}</div>;
 };
 
-uibench.init('React[FC]', '15.2.1');
+uibench.init('React[FC]', '15.3.0-rc.2');
 
 document.addEventListener('DOMContentLoaded', function(e) {
   const container = document.querySelector('#App');
