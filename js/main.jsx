@@ -163,7 +163,7 @@ class Main extends React.Component {
   }
 }
 
-uibench.init('React', '0.14.8');
+uibench.init('React', '15.2.1');
 
 document.addEventListener('DOMContentLoaded', function(e) {
   const container = document.querySelector('#App');
