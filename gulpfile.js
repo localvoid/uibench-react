@@ -3,7 +3,7 @@ const gulp = require('gulp');
 const gutil = require('gulp-util');
 const webpack = require('webpack');
 
-// build directory: dist/${VERSION}
+// build directory: docs/${VERSION}
 const VERSION = 'dev';
 
 const WebpackConfig = {
@@ -13,7 +13,7 @@ const WebpackConfig = {
     pc: path.join(__dirname, 'js', 'pc.jsx'),
   },
   output: {
-    path: path.join(__dirname, 'dist', VERSION),
+    path: path.join(__dirname, 'docs', VERSION),
     filename: '[name].js'
   },
   resolve: {
@@ -48,7 +48,7 @@ function serve() {
   const server = require('webpack-dev-server');
 
   new server(webpack(WebpackConfig), {
-    contentBase: path.join(__dirname, 'dist', VERSION),
+    contentBase: path.join(__dirname, 'docs', VERSION),
     stats: {
       colors: true
     }
@@ -60,12 +60,5 @@ function serve() {
   });
 }
 
-function deploy() {
-  const ghPages = require('gulp-gh-pages');
-  return gulp.src('dist/**/*')
-    .pipe(ghPages());
-}
-
 exports.build = build;
 exports.serve = serve;
-exports.deploy = gulp.series(build, deploy);
