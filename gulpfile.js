@@ -35,7 +35,7 @@ const WebpackConfig = {
 };
 
 function build(done) {
-  webpack(WebpackConfig, function(err, stats) {
+  webpack(WebpackConfig, function (err, stats) {
     if (err) {
       throw new gutil.PluginError('webpack', err);
     }
@@ -52,7 +52,7 @@ function serve() {
     stats: {
       colors: true
     }
-  }).listen(8080, '0.0.0.0', function(err) {
+  }).listen(8080, '0.0.0.0', function (err) {
     if (err) {
       throw new gutil.PluginError('webpack-dev-server', err);
     }

@@ -19,8 +19,8 @@
     "build": "webpack"
   },
   "dependencies": {
-    "react": "^15.3.1",
-    "react-dom": "^15.3.1"
+    "react": "16.0.0-alpha",
+    "react-dom": "16.0.0-alpha"
   },
   "devDependencies": {
     "babel-core": "^6.10.4",
