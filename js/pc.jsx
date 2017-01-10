@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/lib/ReactDOMFiber';
 
 class TableCell extends React.PureComponent {
   constructor(props) {
@@ -58,7 +58,7 @@ class AnimBox extends React.PureComponent {
     const time = data.time;
     const style = {
       'borderRadius': (time % 10).toString() + 'px',
-      'background': 'rgba(0,0,0,' + (0.5 + ((time % 10) /10)).toString() + ')'
+      'background': 'rgba(0,0,0,' + (0.5 + ((time % 10) / 10)).toString() + ')'
     };
 
     return <div className="AnimBox" data-id={data.id} style={style} />;
@@ -129,14 +129,14 @@ class Main extends React.PureComponent {
 
 uibench.init('React[PC]', React.version);
 
-document.addEventListener('DOMContentLoaded', function(e) {
+document.addEventListener('DOMContentLoaded', function (e) {
   const container = document.querySelector('#App');
 
   uibench.run(
-    function(state) {
-      ReactDOM.render(<Main data={state}/>, container);
+    function (state) {
+      ReactDOM.render(<Main data={state} />, container);
     },
-    function(samples) {
+    function (samples) {
       ReactDOM.render(<pre>{JSON.stringify(samples, null, ' ')}</pre>, container);
     }
   );

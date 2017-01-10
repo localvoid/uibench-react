@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/lib/ReactDOMFiber';
 
 const TableCell = ({text}) => {
   function onClick(e) {
@@ -20,13 +20,13 @@ const TableRow = ({data}) => {
 }
 
 const Table = ({data}) => <table className="Table"><tbody>
-    {data.items.map((i) => <TableRow key={i.id} data={i} />)}
-  </tbody></table>;
+  {data.items.map((i) => <TableRow key={i.id} data={i} />)}
+</tbody></table>;
 
 const AnimBox = ({data}) => <div className="AnimBox" data-id={data.id} style={{
-    borderRadius: (data.time % 10).toString() + 'px',
-    background: 'rgba(0,0,0,' + (0.5 + ((data.time % 10) / 10)).toString() + ')'
-  }} />;
+  borderRadius: (data.time % 10).toString() + 'px',
+  background: 'rgba(0,0,0,' + (0.5 + ((data.time % 10) / 10)).toString() + ')'
+}} />;
 
 const Anim = ({data}) => <div className="Anim">{data.items.map((i) => <AnimBox key={i.id} data={i} />)}</div>;
 
@@ -57,14 +57,14 @@ const Main = ({data}) => {
 
 uibench.init('React[FC]', React.version);
 
-document.addEventListener('DOMContentLoaded', function(e) {
+document.addEventListener('DOMContentLoaded', function (e) {
   const container = document.querySelector('#App');
 
   uibench.run(
-    function(state) {
-      ReactDOM.render(<Main data={state}/>, container);
+    function (state) {
+      ReactDOM.render(<Main data={state} />, container);
     },
-    function(samples) {
+    function (samples) {
       ReactDOM.render(<pre>{JSON.stringify(samples, null, ' ')}</pre>, container);
     }
   );
