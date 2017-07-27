@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/lib/ReactDOMFiber';
+import ReactDOM from 'react-dom';
 
 class TableCell extends React.Component {
   constructor(props) {

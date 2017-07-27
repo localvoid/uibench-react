@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom/lib/ReactDOMFiber';
+import ReactDOM from 'react-dom';
 
-const TableCell = ({text}) => {
+const TableCell = ({ text }) => {
   function onClick(e) {
     console.log('Clicked' + text);
     e.stopPropagation();
@@ -10,7 +10,7 @@ const TableCell = ({text}) => {
   return <td className="TableCell" onClick={onClick}>{text}</td>;
 }
 
-const TableRow = ({data}) => {
+const TableRow = ({ data }) => {
   return (
     <tr className={data.active ? 'TableRow active' : 'TableRow'} data-id={data.id}>
       <TableCell text={'#' + data.id}></TableCell>
@@ -19,28 +19,28 @@ const TableRow = ({data}) => {
   );
 }
 
-const Table = ({data}) => <table className="Table"><tbody>
+const Table = ({ data }) => <table className="Table"><tbody>
   {data.items.map((i) => <TableRow key={i.id} data={i} />)}
 </tbody></table>;
 
-const AnimBox = ({data}) => <div className="AnimBox" data-id={data.id} style={{
+const AnimBox = ({ data }) => <div className="AnimBox" data-id={data.id} style={{
   borderRadius: (data.time % 10).toString() + 'px',
   background: 'rgba(0,0,0,' + (0.5 + ((data.time % 10) / 10)).toString() + ')'
 }} />;
 
-const Anim = ({data}) => <div className="Anim">{data.items.map((i) => <AnimBox key={i.id} data={i} />)}</div>;
+const Anim = ({ data }) => <div className="Anim">{data.items.map((i) => <AnimBox key={i.id} data={i} />)}</div>;
 
-const TreeLeaf = ({data}) => <li className="TreeLeaf">{data.id}</li>;
+const TreeLeaf = ({ data }) => <li className="TreeLeaf">{data.id}</li>;
 
-const TreeNode = ({data}) => (
+const TreeNode = ({ data }) => (
   <ul className="TreeNode">
     {data.children.map((c) => c.container ? <TreeNode key={c.id} data={c} /> : <TreeLeaf key={c.id} data={c} />)}
   </ul>
 );
 
-const Tree = ({data}) => <div className="Tree"><TreeNode data={data.root} /></div>;
+const Tree = ({ data }) => <div className="Tree"><TreeNode data={data.root} /></div>;
 
-const Main = ({data}) => {
+const Main = ({ data }) => {
   const location = data.location;
 
   var section;

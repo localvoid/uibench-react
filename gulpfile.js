@@ -17,19 +17,30 @@ const WebpackConfig = {
     filename: '[name].js'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loaders: ['babel?{ "presets": ["es2015-loose", "react"], "plugins": ["transform-react-inline-elements"] }']
+      use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            presets: [["es2015", { modules: false }], "react"],
+            plugins: ["transform-react-inline-elements"]
+          }
+        }
+      ]
     }]
   },
   plugins: [
-    new webpack.NoErrorsPlugin(),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false
+    }),
     new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
-    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.UglifyJsPlugin()
   ],
 };
