@@ -27,8 +27,7 @@ const WebpackConfig = {
         {
           loader: 'babel-loader',
           options: {
-            presets: [["es2015", { modules: false }], "react"],
-            plugins: ["transform-react-inline-elements"]
+            presets: [["es2015", { modules: false }], "react"]
           }
         }
       ]
