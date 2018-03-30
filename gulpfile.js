@@ -7,6 +7,7 @@ const webpack = require('webpack');
 const VERSION = 'dev';
 
 const WebpackConfig = {
+  mode: 'production',
   entry: {
     main: path.join(__dirname, 'js', 'main.jsx'),
     fc: path.join(__dirname, 'js', 'fc.jsx'),
@@ -40,7 +41,6 @@ const WebpackConfig = {
     }),
     new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.optimize.UglifyJsPlugin()
   ],
 };
 
