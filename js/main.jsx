@@ -2,18 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class TableCell extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onClick = this.onClick.bind(this);
+  onClick = (e) => {
+    console.log('Clicked' + this.props.text);
+    e.stopPropagation();
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     return this.props.text !== nextProps.text;
-  }
-
-  onClick(e) {
-    console.log('Clicked' + this.props.text);
-    e.stopPropagation();
   }
 
   render() {

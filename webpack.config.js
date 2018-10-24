@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 // build directory: docs/${VERSION}
 const VERSION = '16';
@@ -27,7 +27,8 @@ module.exports = {
         {
           loader: 'babel-loader',
           options: {
-            presets: [["es2015", { modules: false }], "react"]
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+            plugins: ['@babel/plugin-proposal-class-properties'],
           }
         }
       ]
@@ -35,10 +36,10 @@ module.exports = {
   },
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
+      new TerserPlugin({
+        terserOptions: {
           parse: {
-            // we want uglify-js to parse ecma 8 code. However, we don't want it
+            // we want terser to parse ecma 8 code. However, we don't want it
             // to apply any minfication steps that turns valid ecma 5 code
             // into invalid ecma 5 code. This is why the 'compress' and 'output'
             // sections only apply transformations that are ecma 5 safe

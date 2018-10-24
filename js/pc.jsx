@@ -2,12 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class TableCell extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onClick(e) {
+  onClick = (e) => {
     console.log('Clicked' + this.props.text);
     e.stopPropagation();
   }
