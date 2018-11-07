@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+// const TerserPlugin = require('terser-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 // build directory: docs/${VERSION}
@@ -9,8 +10,6 @@ module.exports = {
   mode: 'production',
   entry: {
     main: path.join(__dirname, 'js', 'main.jsx'),
-    fc: path.join(__dirname, 'js', 'fc.jsx'),
-    pc: path.join(__dirname, 'js', 'pc.jsx'),
   },
   output: {
     path: path.join(__dirname, 'docs', VERSION),
@@ -35,6 +34,8 @@ module.exports = {
   },
   optimization: {
     minimizer: [
+      // new TerserPlugin({
+      //   terserOptions: {
       new UglifyJsPlugin({
         uglifyOptions: {
           parse: {
